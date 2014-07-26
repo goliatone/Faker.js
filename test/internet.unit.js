@@ -31,6 +31,18 @@ describe("internet.js", function () {
             faker.random.first_name.restore();
         });
 
+        it("takes a boolean parameter to return a lower case value", function () {
+            sinon.stub(faker.random, 'number').returns(0);
+            sinon.spy(faker.random, 'first_name');
+            var username = faker.Internet.userName(true);
+
+            assert.ok(username === username.toLowerCase());
+
+
+            faker.random.number.restore();
+            faker.random.first_name.restore();
+        });
+
         it("occasionally returns a firstName with a period or hyphen and a lastName", function () {
             sinon.stub(faker.random, 'number').returns(1);
             sinon.spy(faker.random, 'first_name');
